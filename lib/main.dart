@@ -158,7 +158,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: SizedBox(
                     height: 40,
                     child: ColoredBox(
-                      color: _isReadyToGo() ? Color.fromRGBO(0, 0, 0, 0.87) : Color.fromRGBO(0, 0, 0, 0.38),
+                      color: _isReadyToGo() ? Colors.black87 : Colors.black38,
                       child: Center(
                         child: Text(
                           'Go'.toUpperCase(),
@@ -242,7 +242,7 @@ class BodyPartButton extends StatelessWidget {
       child: SizedBox(
         height: 40,
         child: ColoredBox(
-          color: selected ? Color(0xFF1C79CE) : Color.fromRGBO(0, 0, 0, 0.38),
+          color: selected ? Color(0xFF1C79CE) : Colors.black38,
           child: Center(
             child: Text(
               style: TextStyle(

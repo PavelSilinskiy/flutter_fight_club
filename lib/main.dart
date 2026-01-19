@@ -153,17 +153,20 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               SizedBox(width: 16),
               Expanded(
-                child: SizedBox(
-                  height: 40,
-                  child: ColoredBox(
-                    color: Color.fromRGBO(0, 0, 0, 0.87),
-                    child: Center(
-                      child: Text(
-                        'Go'.toUpperCase(),
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w900,
+                child: GestureDetector(
+                  onTap: _go,
+                  child: SizedBox(
+                    height: 40,
+                    child: ColoredBox(
+                      color: _isReadyToGo() ? Color.fromRGBO(0, 0, 0, 0.87) : Color.fromRGBO(0, 0, 0, 0.38),
+                      child: Center(
+                        child: Text(
+                          'Go'.toUpperCase(),
+                          style: TextStyle(
+                            color: Color.fromRGBO(255, 255, 255, 0.87),
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700,
+                          ),
                         ),
                       ),
                     ),
@@ -179,6 +182,10 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  bool _isReadyToGo() {
+    return defendingBodyPart != null && attackingBodyPart != null;
+  }
+
   void _selectDefendingBodyPart(BodyPart value) {
     setState(() {
       defendingBodyPart = value;
@@ -188,6 +195,16 @@ class _MyHomePageState extends State<MyHomePage> {
   void _selectAttackingBodyPart(BodyPart value) {
     setState(() {
       attackingBodyPart = value;
+    });
+  }
+
+  void _go() {
+    if (defendingBodyPart == null || attackingBodyPart == null) {
+      return;
+    }
+    setState(() {
+      defendingBodyPart = null;
+      attackingBodyPart = null;
     });
   }
 }

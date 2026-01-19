@@ -89,7 +89,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   children: [
                     SizedBox(
                       height: 40,
-                      child: Center(child: Text('Defend'.toUpperCase())),
+                      child: Center(
+                        child: Text(
+                          'Defend'.toUpperCase(),
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ),
                     ),
                     SizedBox(height: 13),
                     BodyPartButton(
@@ -112,7 +120,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   children: [
                     SizedBox(
                       height: 40,
-                      child: Center(child: Text('Attack'.toUpperCase())),
+                      child: Center(
+                        child: Text(
+                          'Attack'.toUpperCase(),
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ),
                     ),
                     SizedBox(height: 13),
                     BodyPartButton(
@@ -209,8 +225,18 @@ class BodyPartButton extends StatelessWidget {
       child: SizedBox(
         height: 40,
         child: ColoredBox(
-          color: selected ? Color.fromRGBO(28, 121, 206, 1) : Colors.black26,
-          child: Center(child: Text(bodyPart.name.toUpperCase())),
+          color: selected ? Color(0xFF1C79CE) : Color.fromRGBO(0, 0, 0, 0.38),
+          child: Center(
+            child: Text(
+              style: TextStyle(
+                color: selected ? Color(0xFFFFFFFF) : Color(0xFF060D14),
+                fontSize: 13,
+                fontWeight: FontWeight.w400,
+                fontFamily: 'Roboto',
+              ),
+              bodyPart.name.toUpperCase(),
+            ),
+          ),
         ),
       ),
     );

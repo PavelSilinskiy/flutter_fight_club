@@ -73,9 +73,27 @@ class _MyHomePageState extends State<MyHomePage> {
           Row(
             children: [
               SizedBox(width: 16),
-              Expanded(child: Center(child: Text('You'))),
+              Expanded(child: Column(
+                children: [
+                  Center(child: Text('You'),),
+                  Text('1'),
+                  Text('1'),
+                  Text('1'),
+                  Text('1'),
+                  Text('1'),
+                ],
+              )),
               SizedBox(width: 12),
-              Expanded(child: Center(child: Text('Enemy'))),
+              Expanded(child: Column(
+                children: [
+                  Center(child: Text('Enemy'),),
+                  Text('1'),
+                  Text('1'),
+                  Text('1'),
+                  Text('1'),
+                  Text('1'),
+                ],
+              )),
               SizedBox(width: 16),
             ],
           ),

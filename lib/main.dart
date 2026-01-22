@@ -274,29 +274,50 @@ class FightersInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SizedBox(width: 16),
+        Center(
+          child: LivesWidget(
+            overAllLivesCount: maxLives,
+            currentLivesCount: yourLives,
+          ),
+        ),
         Expanded(
           child: Column(
             children: [
               Center(child: Text('You')),
-              LivesWidget(
-                overAllLivesCount: maxLives,
-                currentLivesCount: yourLives,
+              SizedBox(
+                height: 92,
+                width: 92,
+                child: ColoredBox(color: Color(0xFFEF3838)),
               ),
             ],
           ),
         ),
-        SizedBox(width: 12),
+        SizedBox(width: 16),
+        SizedBox(
+          height: 44,
+          width: 44,
+          child: ColoredBox(color: Color(0xFF4DC839)),
+        ),
+        SizedBox(width: 16),
         Expanded(
           child: Column(
             children: [
               Center(child: Text('Enemy')),
-              LivesWidget(
-                overAllLivesCount: maxLives,
-                currentLivesCount: enemyLives,
+              SizedBox(
+                height: 92,
+                width: 92,
+                child: ColoredBox(color: Color(0xFF4388EF)),
               ),
             ],
+          ),
+        ),
+        Center(
+          child: LivesWidget(
+            overAllLivesCount: maxLives,
+            currentLivesCount: enemyLives,
           ),
         ),
         SizedBox(width: 16),

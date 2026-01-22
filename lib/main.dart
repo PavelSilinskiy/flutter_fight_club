@@ -287,7 +287,6 @@ class BodyPartButton extends StatelessWidget {
                 color: selected ? Color(0xFFFFFFFF) : Color(0xFF060D14),
                 fontSize: 13,
                 fontWeight: FontWeight.w400,
-                fontFamily: 'Roboto',
               ),
               bodyPart.name.toUpperCase(),
             ),

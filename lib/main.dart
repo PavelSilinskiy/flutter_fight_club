@@ -64,41 +64,43 @@ class _MyHomePageState extends State<MyHomePage> {
             selectAttackingBodyPart: _selectAttackingBodyPart,
           ),
           SizedBox(height: 14),
-          Row(
-            children: [
-              SizedBox(width: 16),
-              Expanded(
-                child: GestureDetector(
-                  onTap: _go,
-                  child: SizedBox(
-                    height: 40,
-                    child: ColoredBox(
-                      color: _isReadyToGo() ? Colors.black87 : Colors.black38,
-                      child: Center(
-                        child: Text(
-                          'Go'.toUpperCase(),
-                          style: TextStyle(
-                            color: Color.fromRGBO(255, 255, 255, 0.87),
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(width: 16),
-            ],
+          GoButton(
+            onTap: _go,
+            color: (defendingBodyPart != null && attackingBodyPart != null)
+                ? Colors.black87
+                : Colors.black38,
           ),
+          // Row(
+          //   children: [
+          //     SizedBox(width: 16),
+          //     Expanded(
+          //       child: GestureDetector(
+          //         onTap: _go,
+          //         child: SizedBox(
+          //           height: 40,
+          //           child: ColoredBox(
+          //             color: _isReadyToGo() ? Colors.black87 : Colors.black38,
+          //             child: Center(
+          //               child: Text(
+          //                 'Go'.toUpperCase(),
+          //                 style: TextStyle(
+          //                   color: Color.fromRGBO(255, 255, 255, 0.87),
+          //                   fontSize: 16,
+          //                   fontWeight: FontWeight.w700,
+          //                 ),
+          //               ),
+          //             ),
+          //           ),
+          //         ),
+          //       ),
+          //     ),
+          //     SizedBox(width: 16),
+          //   ],
+          // ),
           SizedBox(height: 40),
         ],
       ),
     );
-  }
-
-  bool _isReadyToGo() {
-    return defendingBodyPart != null && attackingBodyPart != null;
   }
 
   void _selectDefendingBodyPart(BodyPart value) {
@@ -121,6 +123,44 @@ class _MyHomePageState extends State<MyHomePage> {
       defendingBodyPart = null;
       attackingBodyPart = null;
     });
+  }
+}
+
+class GoButton extends StatelessWidget {
+  final VoidCallback onTap;
+  final Color color;
+
+  const GoButton({super.key, required this.onTap, required this.color});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        SizedBox(width: 16),
+        Expanded(
+          child: GestureDetector(
+            onTap: onTap,
+            child: SizedBox(
+              height: 40,
+              child: ColoredBox(
+                color: color,
+                child: Center(
+                  child: Text(
+                    'Go'.toUpperCase(),
+                    style: TextStyle(
+                      color: Color.fromRGBO(255, 255, 255, 0.87),
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+        SizedBox(width: 16),
+      ],
+    );
   }
 }
 

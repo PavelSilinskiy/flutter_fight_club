@@ -43,29 +43,29 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFD5DEF0),
-      body: Column(
-        children: [
-          SizedBox(height: 40),
-          FightersInfo(
-            maxLives: maxLives,
-            yourLives: yourLives,
-            enemyLives: enemyLives,
-          ),
-          Expanded(child: SizedBox()),
-          ControlsWidget(
-            defendingBodyPart: defendingBodyPart,
-            attackingBodyPart: attackingBodyPart,
-            selectDefendingBodyPart: _selectDefendingBodyPart,
-            selectAttackingBodyPart: _selectAttackingBodyPart,
-          ),
-          SizedBox(height: 14),
-          GoButton(
-            text: (enemyLives == 0 || yourLives == 0) ? 'Start new game' : 'Go',
-            onTap: _go,
-            color: _getGoButtonColor(),
-          ),
-          SizedBox(height: 40),
-        ],
+      body: SafeArea(
+        child: Column(
+          children: [
+            FightersInfo(
+              maxLives: maxLives,
+              yourLives: yourLives,
+              enemyLives: enemyLives,
+            ),
+            Expanded(child: SizedBox()),
+            ControlsWidget(
+              defendingBodyPart: defendingBodyPart,
+              attackingBodyPart: attackingBodyPart,
+              selectDefendingBodyPart: _selectDefendingBodyPart,
+              selectAttackingBodyPart: _selectAttackingBodyPart,
+            ),
+            SizedBox(height: 14),
+            GoButton(
+              text: (enemyLives == 0 || yourLives == 0) ? 'Start new game' : 'Go',
+              onTap: _go,
+              color: _getGoButtonColor(),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -55,29 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Column(
         children: [
           SizedBox(height: 40),
-          Row(
-            children: [
-              SizedBox(width: 16),
-              Expanded(
-                child: Column(
-                  children: [
-                    Center(child: Text('You')),
-                    LivesWidget(overAllLivesCount: 5, currentLivesCount: 3),
-                  ],
-                ),
-              ),
-              SizedBox(width: 12),
-              Expanded(
-                child: Column(
-                  children: [
-                    Center(child: Text('Enemy')),
-                    LivesWidget(overAllLivesCount: 5, currentLivesCount: 4),
-                  ],
-                ),
-              ),
-              SizedBox(width: 16),
-            ],
-          ),
+          FightersInfo(),
           Expanded(child: SizedBox()),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -217,6 +195,37 @@ class _MyHomePageState extends State<MyHomePage> {
       defendingBodyPart = null;
       attackingBodyPart = null;
     });
+  }
+}
+
+class FightersInfo extends StatelessWidget {
+  const FightersInfo({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        SizedBox(width: 16),
+        Expanded(
+          child: Column(
+            children: [
+              Center(child: Text('You')),
+              LivesWidget(overAllLivesCount: 5, currentLivesCount: 3),
+            ],
+          ),
+        ),
+        SizedBox(width: 12),
+        Expanded(
+          child: Column(
+            children: [
+              Center(child: Text('Enemy')),
+              LivesWidget(overAllLivesCount: 5, currentLivesCount: 4),
+            ],
+          ),
+        ),
+        SizedBox(width: 16),
+      ],
+    );
   }
 }
 

@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_fight_club/fight_club_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
@@ -321,9 +322,9 @@ class LivesWidget extends StatelessWidget {
     return Column(
       children: List.generate(overAllLivesCount, (index) {
         if (index < currentLivesCount) {
-          return Text('1');
+          return Image.asset(FightClubIcons.heartFull, width: 18);
         } else {
-          return Text('0');
+          return Image.asset(FightClubIcons.heartEmpty, width: 18);
         }
       }),
     );

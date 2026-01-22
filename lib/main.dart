@@ -60,7 +60,9 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             SizedBox(height: 14),
             GoButton(
-              text: (enemyLives == 0 || yourLives == 0) ? 'Start new game' : 'Go',
+              text: (enemyLives == 0 || yourLives == 0)
+                  ? 'Start new game'
+                  : 'Go',
               onTap: _go,
               color: _getGoButtonColor(),
             ),
@@ -137,32 +139,27 @@ class GoButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        SizedBox(width: 16),
-        Expanded(
-          child: GestureDetector(
-            onTap: onTap,
-            child: SizedBox(
-              height: 40,
-              child: ColoredBox(
-                color: color,
-                child: Center(
-                  child: Text(
-                    text.toUpperCase(),
-                    style: TextStyle(
-                      color: Color.fromRGBO(255, 255, 255, 0.87),
-                      fontSize: 16,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      child: GestureDetector(
+        onTap: onTap,
+        child: SizedBox(
+          height: 40,
+          child: ColoredBox(
+            color: color,
+            child: Center(
+              child: Text(
+                text.toUpperCase(),
+                style: TextStyle(
+                  color: Color.fromRGBO(255, 255, 255, 0.87),
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
                 ),
               ),
             ),
           ),
         ),
-        SizedBox(width: 16),
-      ],
+      ),
     );
   }
 }

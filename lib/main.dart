@@ -57,85 +57,11 @@ class _MyHomePageState extends State<MyHomePage> {
           SizedBox(height: 40),
           FightersInfo(),
           Expanded(child: SizedBox()),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(width: 16),
-              Expanded(
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 40,
-                      child: Center(
-                        child: Text(
-                          'Defend'.toUpperCase(),
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 13),
-                    BodyPartButton(
-                      bodyPart: BodyPart.head,
-                      selected: defendingBodyPart == BodyPart.head,
-                      bodyPartSetter: _selectDefendingBodyPart,
-                    ),
-                    SizedBox(height: 14),
-                    BodyPartButton(
-                      bodyPart: BodyPart.torso,
-                      selected: defendingBodyPart == BodyPart.torso,
-                      bodyPartSetter: _selectDefendingBodyPart,
-                    ),
-                    SizedBox(height: 14),
-                    BodyPartButton(
-                      bodyPart: BodyPart.legs,
-                      selected: defendingBodyPart == BodyPart.legs,
-                      bodyPartSetter: _selectDefendingBodyPart,
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(width: 12),
-              Expanded(
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 40,
-                      child: Center(
-                        child: Text(
-                          'Attack'.toUpperCase(),
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 13),
-                    BodyPartButton(
-                      bodyPart: BodyPart.head,
-                      selected: attackingBodyPart == BodyPart.head,
-                      bodyPartSetter: _selectAttackingBodyPart,
-                    ),
-                    SizedBox(height: 14),
-                    BodyPartButton(
-                      bodyPart: BodyPart.torso,
-                      selected: attackingBodyPart == BodyPart.torso,
-                      bodyPartSetter: _selectAttackingBodyPart,
-                    ),
-                    SizedBox(height: 14),
-                    BodyPartButton(
-                      bodyPart: BodyPart.legs,
-                      selected: attackingBodyPart == BodyPart.legs,
-                      bodyPartSetter: _selectAttackingBodyPart,
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(width: 16),
-            ],
+          ControlsWidget(
+            defendingBodyPart: defendingBodyPart,
+            attackingBodyPart: attackingBodyPart,
+            selectDefendingBodyPart: _selectDefendingBodyPart,
+            selectAttackingBodyPart: _selectAttackingBodyPart,
           ),
           SizedBox(height: 14),
           Row(
@@ -195,6 +121,99 @@ class _MyHomePageState extends State<MyHomePage> {
       defendingBodyPart = null;
       attackingBodyPart = null;
     });
+  }
+}
+
+class ControlsWidget extends StatelessWidget {
+  final BodyPart? defendingBodyPart;
+  final ValueSetter<BodyPart> selectDefendingBodyPart;
+  final BodyPart? attackingBodyPart;
+  final ValueSetter<BodyPart> selectAttackingBodyPart;
+
+  const ControlsWidget({
+    super.key,
+    required this.defendingBodyPart,
+    required this.selectDefendingBodyPart,
+    required this.attackingBodyPart,
+    required this.selectAttackingBodyPart,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SizedBox(width: 16),
+        Expanded(
+          child: Column(
+            children: [
+              SizedBox(
+                height: 40,
+                child: Center(
+                  child: Text(
+                    'Defend'.toUpperCase(),
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                  ),
+                ),
+              ),
+              SizedBox(height: 13),
+              BodyPartButton(
+                bodyPart: BodyPart.head,
+                selected: defendingBodyPart == BodyPart.head,
+                bodyPartSetter: selectDefendingBodyPart,
+              ),
+              SizedBox(height: 14),
+              BodyPartButton(
+                bodyPart: BodyPart.torso,
+                selected: defendingBodyPart == BodyPart.torso,
+                bodyPartSetter: selectDefendingBodyPart,
+              ),
+              SizedBox(height: 14),
+              BodyPartButton(
+                bodyPart: BodyPart.legs,
+                selected: defendingBodyPart == BodyPart.legs,
+                bodyPartSetter: selectDefendingBodyPart,
+              ),
+            ],
+          ),
+        ),
+        SizedBox(width: 12),
+        Expanded(
+          child: Column(
+            children: [
+              SizedBox(
+                height: 40,
+                child: Center(
+                  child: Text(
+                    'Attack'.toUpperCase(),
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                  ),
+                ),
+              ),
+              SizedBox(height: 13),
+              BodyPartButton(
+                bodyPart: BodyPart.head,
+                selected: attackingBodyPart == BodyPart.head,
+                bodyPartSetter: selectAttackingBodyPart,
+              ),
+              SizedBox(height: 14),
+              BodyPartButton(
+                bodyPart: BodyPart.torso,
+                selected: attackingBodyPart == BodyPart.torso,
+                bodyPartSetter: selectAttackingBodyPart,
+              ),
+              SizedBox(height: 14),
+              BodyPartButton(
+                bodyPart: BodyPart.legs,
+                selected: attackingBodyPart == BodyPart.legs,
+                bodyPartSetter: selectAttackingBodyPart,
+              ),
+            ],
+          ),
+        ),
+        SizedBox(width: 16),
+      ],
+    );
   }
 }
 

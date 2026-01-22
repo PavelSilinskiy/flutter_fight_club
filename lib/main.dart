@@ -76,10 +76,9 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           SizedBox(height: 14),
           GoButton(
+            text: (enemyLives == 0 || yourLives == 0) ? 'Start new game' : 'Go',
             onTap: _go,
-            color: (defendingBodyPart != null && attackingBodyPart != null)
-                ? Colors.black87
-                : Colors.black38,
+            color: _getGoButtonColor(),
           ),
           // Row(
           //   children: [
@@ -114,23 +113,41 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  Color _getGoButtonColor() {
+    if ((defendingBodyPart != null && attackingBodyPart != null) ||
+        enemyLives == 0 ||
+        yourLives == 0) {
+      return Colors.black87;
+    } else {
+      return Colors.black38;
+    }
+  }
+
   void _selectDefendingBodyPart(BodyPart value) {
-    setState(() {
-      defendingBodyPart = value;
-    });
+    if (enemyLives != 0 && yourLives != 0) {
+      setState(() {
+        defendingBodyPart = value;
+      });
+    }
   }
 
   void _selectAttackingBodyPart(BodyPart value) {
-    setState(() {
-      attackingBodyPart = value;
-    });
+    if (enemyLives != 0 && yourLives != 0) {
+      setState(() {
+        attackingBodyPart = value;
+      });
+    }
   }
 
   void _go() {
     bool enemyLostLife;
     bool youLostLife;
-
-    if (defendingBodyPart != null && attackingBodyPart != null) {
+    if (enemyLives == 0 || yourLives == 0) {
+      setState(() {
+        enemyLives = maxLives;
+        yourLives = maxLives;
+      });
+    } else if (defendingBodyPart != null && attackingBodyPart != null) {
       setState(() {
         youLostLife = (defendingBodyPart != whatEnemyAttacks);
         enemyLostLife = (attackingBodyPart != whatEnemyDefends);
@@ -144,20 +161,22 @@ class _MyHomePageState extends State<MyHomePage> {
         attackingBodyPart = null;
         whatEnemyDefends = BodyPart.random();
         whatEnemyAttacks = BodyPart.random();
-        if (enemyLives == 0 || yourLives == 0) {
-          enemyLives = maxLives;
-          yourLives = maxLives;
-        }
       });
     }
   }
 }
 
 class GoButton extends StatelessWidget {
+  final String text;
   final VoidCallback onTap;
   final Color color;
 
-  const GoButton({super.key, required this.onTap, required this.color});
+  const GoButton({
+    super.key,
+    required this.onTap,
+    required this.color,
+    required this.text,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -173,7 +192,7 @@ class GoButton extends StatelessWidget {
                 color: color,
                 child: Center(
                   child: Text(
-                    'Go'.toUpperCase(),
+                    text.toUpperCase(),
                     style: TextStyle(
                       color: Color.fromRGBO(255, 255, 255, 0.87),
                       fontSize: 16,

@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-  
 
   // This widget is the root of your application.
   @override
@@ -16,9 +14,7 @@ class MyApp extends StatelessWidget {
     final TextTheme textTheme = Theme.of(context).textTheme;
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        textTheme: GoogleFonts.pressStart2pTextTheme(textTheme),
-      ),
+      theme: ThemeData(textTheme: GoogleFonts.pressStart2pTextTheme(textTheme)),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
@@ -66,11 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Column(
                   children: [
                     Center(child: Text('You')),
-                    Text('1'),
-                    Text('1'),
-                    Text('1'),
-                    Text('1'),
-                    Text('1'),
+                    LivesWidget(overAllLivesCount: 5, currentLivesCount: 3),
                   ],
                 ),
               ),
@@ -79,11 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Column(
                   children: [
                     Center(child: Text('Enemy')),
-                    Text('1'),
-                    Text('1'),
-                    Text('1'),
-                    Text('1'),
-                    Text('1'),
+                    LivesWidget(overAllLivesCount: 5, currentLivesCount: 4),
                   ],
                 ),
               ),
@@ -229,6 +217,32 @@ class _MyHomePageState extends State<MyHomePage> {
       defendingBodyPart = null;
       attackingBodyPart = null;
     });
+  }
+}
+
+class LivesWidget extends StatelessWidget {
+  final int overAllLivesCount;
+  final int currentLivesCount;
+
+  const LivesWidget({
+    super.key,
+    required this.overAllLivesCount,
+    required this.currentLivesCount,
+  }) : assert(currentLivesCount >= 0),
+       assert(overAllLivesCount >= currentLivesCount),
+       assert(overAllLivesCount >= 1);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: List.generate(overAllLivesCount, (index) {
+        if (index < currentLivesCount) {
+          return Text('1');
+        } else {
+          return Text('0');
+        }
+      }),
+    );
   }
 }
 

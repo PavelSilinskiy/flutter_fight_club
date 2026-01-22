@@ -273,20 +273,20 @@ class FightersInfo extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        SizedBox(width: 16),
-        Center(
-          child: LivesWidget(
+    return SizedBox(
+      height: 160,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          LivesWidget(
             overAllLivesCount: maxLives,
             currentLivesCount: yourLives,
           ),
-        ),
-        Expanded(
-          child: Column(
+          Column(
             children: [
+              const SizedBox(height: 16),
               Center(child: Text('You')),
+              const SizedBox(height: 12),
               SizedBox(
                 height: 92,
                 width: 92,
@@ -294,18 +294,16 @@ class FightersInfo extends StatelessWidget {
               ),
             ],
           ),
-        ),
-        SizedBox(width: 16),
-        SizedBox(
-          height: 44,
-          width: 44,
-          child: ColoredBox(color: Color(0xFF4DC839)),
-        ),
-        SizedBox(width: 16),
-        Expanded(
-          child: Column(
+          SizedBox(
+            height: 44,
+            width: 44,
+            child: ColoredBox(color: Color(0xFF4DC839)),
+          ),
+          Column(
             children: [
+              const SizedBox(height: 16),
               Center(child: Text('Enemy')),
+              const SizedBox(height: 12),
               SizedBox(
                 height: 92,
                 width: 92,
@@ -313,15 +311,12 @@ class FightersInfo extends StatelessWidget {
               ),
             ],
           ),
-        ),
-        Center(
-          child: LivesWidget(
+          LivesWidget(
             overAllLivesCount: maxLives,
             currentLivesCount: enemyLives,
           ),
-        ),
-        SizedBox(width: 16),
-      ],
+        ],
+      ),
     );
   }
 }
@@ -341,6 +336,7 @@ class LivesWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(overAllLivesCount, (index) {
         if (index < currentLivesCount) {
           return Image.asset(FightClubIcons.heartFull, width: 18);

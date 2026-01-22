@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -39,8 +41,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  static const int maxLives = 5;
   BodyPart? defendingBodyPart;
   BodyPart? attackingBodyPart;
+  BodyPart whatEnemyDefends = BodyPart.random();
+  BodyPart whatEnemyAttacks = BodyPart.random();
+  int yourLives = maxLives;
+  int enemyLives = maxLives;
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +62,11 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Column(
         children: [
           SizedBox(height: 40),
-          FightersInfo(),
+          FightersInfo(
+            maxLives: maxLives,
+            yourLives: yourLives,
+            enemyLives: enemyLives,
+          ),
           Expanded(child: SizedBox()),
           ControlsWidget(
             defendingBodyPart: defendingBodyPart,
@@ -116,13 +127,29 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _go() {
-    if (defendingBodyPart == null || attackingBodyPart == null) {
-      return;
+    bool enemyLostLife;
+    bool youLostLife;
+
+    if (defendingBodyPart != null && attackingBodyPart != null) {
+      setState(() {
+        youLostLife = (defendingBodyPart != whatEnemyAttacks);
+        enemyLostLife = (attackingBodyPart != whatEnemyDefends);
+        if (youLostLife) {
+          yourLives -= 1;
+        }
+        if (enemyLostLife) {
+          enemyLives -= 1;
+        }
+        defendingBodyPart = null;
+        attackingBodyPart = null;
+        whatEnemyDefends = BodyPart.random();
+        whatEnemyAttacks = BodyPart.random();
+        if (enemyLives == 0 || yourLives == 0) {
+          enemyLives = maxLives;
+          yourLives = maxLives;
+        }
+      });
     }
-    setState(() {
-      defendingBodyPart = null;
-      attackingBodyPart = null;
-    });
   }
 }
 
@@ -258,8 +285,16 @@ class ControlsWidget extends StatelessWidget {
 }
 
 class FightersInfo extends StatelessWidget {
-  const FightersInfo({super.key});
+  final int maxLives;
+  final int yourLives;
+  final int enemyLives;
 
+  const FightersInfo({
+    super.key,
+    required this.maxLives,
+    required this.yourLives,
+    required this.enemyLives,
+  });
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -269,7 +304,10 @@ class FightersInfo extends StatelessWidget {
           child: Column(
             children: [
               Center(child: Text('You')),
-              LivesWidget(overAllLivesCount: 5, currentLivesCount: 3),
+              LivesWidget(
+                overAllLivesCount: maxLives,
+                currentLivesCount: yourLives,
+              ),
             ],
           ),
         ),
@@ -278,7 +316,10 @@ class FightersInfo extends StatelessWidget {
           child: Column(
             children: [
               Center(child: Text('Enemy')),
-              LivesWidget(overAllLivesCount: 5, currentLivesCount: 4),
+              LivesWidget(
+                overAllLivesCount: maxLives,
+                currentLivesCount: enemyLives,
+              ),
             ],
           ),
         ),
@@ -322,6 +363,12 @@ class BodyPart {
   static const head = BodyPart._('Head');
   static const torso = BodyPart._('Torso');
   static const legs = BodyPart._('Legs');
+
+  static const List<BodyPart> _values = [head, torso, legs];
+
+  static BodyPart random() {
+    return _values[Random().nextInt(_values.length)];
+  }
 
   @override
   String toString() {

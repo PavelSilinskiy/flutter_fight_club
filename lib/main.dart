@@ -52,7 +52,14 @@ class _MyHomePageState extends State<MyHomePage> {
               yourLives: yourLives,
               enemyLives: enemyLives,
             ),
-            Expanded(child: SizedBox()),
+            Expanded(
+              child: SizedBox(width: double.infinity, height: double.infinity,
+                child: Padding(
+                  padding: EdgeInsetsGeometry.symmetric(vertical: 30, horizontal: 16),
+                  child: ColoredBox(color: FightClubColors.centerBeckground),
+                ),
+              ),
+            ),
             ControlsWidget(
               defendingBodyPart: defendingBodyPart,
               attackingBodyPart: attackingBodyPart,
@@ -287,8 +294,12 @@ class FightersInfo extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Expanded(child: ColoredBox(color: FightClubColors.yourBackground)),
-              Expanded(child: ColoredBox(color: FightClubColors.enemyBackground)),
+              Expanded(
+                child: ColoredBox(color: FightClubColors.yourBackground),
+              ),
+              Expanded(
+                child: ColoredBox(color: FightClubColors.enemyBackground),
+              ),
             ],
           ),
           Row(

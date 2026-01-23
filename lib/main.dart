@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_fight_club/fight_club_colors.dart';
 import 'package:flutter_fight_club/fight_club_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -42,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFD5DEF0),
+      backgroundColor: FightClubColors.background,
       body: SafeArea(
         child: Column(
           children: [
@@ -76,9 +77,9 @@ class _MyHomePageState extends State<MyHomePage> {
     if ((defendingBodyPart != null && attackingBodyPart != null) ||
         enemyLives == 0 ||
         yourLives == 0) {
-      return Colors.black87;
+      return FightClubColors.blackButton;
     } else {
-      return Colors.black38;
+      return FightClubColors.greyButton;
     }
   }
 
@@ -151,7 +152,7 @@ class GoButton extends StatelessWidget {
               child: Text(
                 text.toUpperCase(),
                 style: TextStyle(
-                  color: Color.fromRGBO(255, 255, 255, 0.87),
+                  color: FightClubColors.whiteText,
                   fontSize: 16,
                   fontWeight: FontWeight.w700,
                 ),
@@ -192,7 +193,12 @@ class ControlsWidget extends StatelessWidget {
                 child: Center(
                   child: Text(
                     'Defend'.toUpperCase(),
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+
+                    style: TextStyle(
+                      color: FightClubColors.darkGreyText,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                    ),
                   ),
                 ),
               ),
@@ -226,7 +232,11 @@ class ControlsWidget extends StatelessWidget {
                 child: Center(
                   child: Text(
                     'Attack'.toUpperCase(),
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                    style: TextStyle(
+                      color: FightClubColors.darkGreyText,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                    ),
                   ),
                 ),
               ),
@@ -282,7 +292,12 @@ class FightersInfo extends StatelessWidget {
           Column(
             children: [
               const SizedBox(height: 16),
-              Center(child: Text('You')),
+              Center(
+                child: Text(
+                  'You',
+                  style: TextStyle(color: FightClubColors.darkGreyText),
+                ),
+              ),
               const SizedBox(height: 12),
               SizedBox(
                 height: 92,
@@ -299,7 +314,12 @@ class FightersInfo extends StatelessWidget {
           Column(
             children: [
               const SizedBox(height: 16),
-              Center(child: Text('Enemy')),
+              Center(
+                child: Text(
+                  'Enemy',
+                  style: TextStyle(color: FightClubColors.darkGreyText),
+                ),
+              ),
               const SizedBox(height: 12),
               SizedBox(
                 height: 92,
@@ -385,11 +405,15 @@ class BodyPartButton extends StatelessWidget {
       child: SizedBox(
         height: 40,
         child: ColoredBox(
-          color: selected ? Color(0xFF1C79CE) : Colors.black38,
+          color: selected
+              ? FightClubColors.blueButton
+              : FightClubColors.greyButton,
           child: Center(
             child: Text(
               style: TextStyle(
-                color: selected ? Color(0xFFFFFFFF) : Color(0xFF060D14),
+                color: selected
+                    ? FightClubColors.whiteText
+                    : FightClubColors.darkGreyText,
                 fontSize: 13,
                 fontWeight: FontWeight.w400,
               ),

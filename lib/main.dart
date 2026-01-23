@@ -144,7 +144,8 @@ class _MyHomePageState extends State<MyHomePage> {
         enemyLostLife = (attackingBodyPart != whatEnemyDefends);
         if (enemyLostLife) {
           enemyLives -= 1;
-          centralText = 'You hit enemy\'s ${attackingBodyPart!.name.toLowerCase()}.';
+          centralText =
+              'You hit enemy\'s ${attackingBodyPart!.name.toLowerCase()}.';
         } else {
           centralText = 'Your attack was blocked.';
         }
@@ -158,11 +159,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
         if (enemyLives == 0 && yourLives == 0) {
           centralText = 'Draw';
-        }
-        if (enemyLives == 0) {
+        } else if (enemyLives == 0) {
           centralText = 'You won';
-        }
-        if (yourLives == 0) {
+        } else if (yourLives == 0) {
           centralText = 'You lost';
         }
 

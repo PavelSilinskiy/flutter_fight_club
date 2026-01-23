@@ -38,8 +38,12 @@ class _MyHomePageState extends State<MyHomePage> {
   BodyPart? attackingBodyPart;
   BodyPart whatEnemyDefends = BodyPart.random();
   BodyPart whatEnemyAttacks = BodyPart.random();
+  String centralText = '';
+  bool enemyLostLife = false;
+  bool youLostLife = false;
   int yourLives = maxLives;
   int enemyLives = maxLives;
+  // bool isnewGame = true;
 
   @override
   Widget build(BuildContext context) {
@@ -54,10 +58,28 @@ class _MyHomePageState extends State<MyHomePage> {
               enemyLives: enemyLives,
             ),
             Expanded(
-              child: SizedBox(width: double.infinity, height: double.infinity,
+              child: SizedBox(
+                width: double.infinity,
+                height: double.infinity,
                 child: Padding(
-                  padding: EdgeInsetsGeometry.symmetric(vertical: 30, horizontal: 16),
-                  child: ColoredBox(color: FightClubColors.centerBeckground),
+                  padding: EdgeInsetsGeometry.symmetric(
+                    vertical: 30,
+                    horizontal: 16,
+                  ),
+                  child: ColoredBox(
+                    color: FightClubColors.centerBackground,
+                    child: Center(
+                      child: Text(
+                        centralText,
+                        //_getCentralText(),
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: FightClubColors.darkGreyText,
+                          fontSize: 10,
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -108,23 +130,42 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _go() {
-    bool enemyLostLife;
-    bool youLostLife;
     if (enemyLives == 0 || yourLives == 0) {
       setState(() {
+        centralText = '';
+        // isnewGame = true;
         enemyLives = maxLives;
         yourLives = maxLives;
       });
     } else if (defendingBodyPart != null && attackingBodyPart != null) {
       setState(() {
+        // isnewGame = false;
         youLostLife = (defendingBodyPart != whatEnemyAttacks);
         enemyLostLife = (attackingBodyPart != whatEnemyDefends);
-        if (youLostLife) {
-          yourLives -= 1;
-        }
         if (enemyLostLife) {
           enemyLives -= 1;
+          centralText = 'You hit enemy\'s ${attackingBodyPart!.name.toLowerCase()}.';
+        } else {
+          centralText = 'Your attack was blocked.';
         }
+        if (youLostLife) {
+          yourLives -= 1;
+          centralText =
+              '$centralText\nEnemy hit your ${defendingBodyPart!.name.toLowerCase()}.';
+        } else {
+          centralText = '$centralText\nEnemy\'s attack was blocked.';
+        }
+
+        if (enemyLives == 0 && yourLives == 0) {
+          centralText = 'Draw';
+        }
+        if (enemyLives == 0) {
+          centralText = 'You won';
+        }
+        if (yourLives == 0) {
+          centralText = 'You lost';
+        }
+
         defendingBodyPart = null;
         attackingBodyPart = null;
         whatEnemyDefends = BodyPart.random();
@@ -132,6 +173,34 @@ class _MyHomePageState extends State<MyHomePage> {
       });
     }
   }
+
+  // String _getCentralText() {
+  //   String text = '';
+  //   if (isnewGame) {
+  //     return '';
+  //   }
+  //   if (enemyLives == 0 && yourLives == 0) {
+  //     return 'Draw';
+  //   }
+  //   if (enemyLives == 0) {
+  //     return 'You won';
+  //   }
+  //   if (yourLives == 0) {
+  //     return 'You lost';
+  //   }
+  //   if (enemyLostLife) {
+  //     text = 'You hit enemy\'s ${attackingBodyPart!.name}.';
+  //   } else {
+  //     text = 'Your attack was blocked.';
+  //   }
+  //   if (youLostLife) {
+  //     text = '$text\nEnemy hit your ${defendingBodyPart!.name}.';
+  //   } else {
+  //     text = '$text\nEnemy\'s attack was blocked.';
+  //   }
+
+  //   return 'Error';
+  // }
 }
 
 class GoButton extends StatelessWidget {

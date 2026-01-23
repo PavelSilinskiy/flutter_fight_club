@@ -282,55 +282,66 @@ class FightersInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 160,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+      child: Stack(
         children: [
-          LivesWidget(
-            overAllLivesCount: maxLives,
-            currentLivesCount: yourLives,
-          ),
-          Column(
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const SizedBox(height: 16),
-              Center(
-                child: Text(
-                  'You',
-                  style: TextStyle(color: FightClubColors.darkGreyText),
-                ),
-              ),
-              const SizedBox(height: 12),
-              SizedBox(
-                height: 92,
-                width: 92,
-                child: ColoredBox(color: Color(0xFFEF3838)),
-              ),
+              Expanded(child: ColoredBox(color: FightClubColors.yourBackground)),
+              Expanded(child: ColoredBox(color: FightClubColors.enemyBackground)),
             ],
           ),
-          SizedBox(
-            height: 44,
-            width: 44,
-            child: ColoredBox(color: Color(0xFF4DC839)),
-          ),
-          Column(
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              const SizedBox(height: 16),
-              Center(
-                child: Text(
-                  'Enemy',
-                  style: TextStyle(color: FightClubColors.darkGreyText),
-                ),
+              LivesWidget(
+                overAllLivesCount: maxLives,
+                currentLivesCount: yourLives,
               ),
-              const SizedBox(height: 12),
+              Column(
+                children: [
+                  const SizedBox(height: 16),
+                  Center(
+                    child: Text(
+                      'You',
+                      style: TextStyle(color: FightClubColors.darkGreyText),
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  SizedBox(
+                    height: 92,
+                    width: 92,
+                    child: ColoredBox(color: Color(0xFFEF3838)),
+                  ),
+                ],
+              ),
               SizedBox(
-                height: 92,
-                width: 92,
-                child: ColoredBox(color: Color(0xFF4388EF)),
+                height: 44,
+                width: 44,
+                child: ColoredBox(color: Color(0xFF4DC839)),
+              ),
+              Column(
+                children: [
+                  const SizedBox(height: 16),
+                  Center(
+                    child: Text(
+                      'Enemy',
+                      style: TextStyle(color: FightClubColors.darkGreyText),
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  SizedBox(
+                    height: 92,
+                    width: 92,
+                    child: ColoredBox(color: Color(0xFF4388EF)),
+                  ),
+                ],
+              ),
+              LivesWidget(
+                overAllLivesCount: maxLives,
+                currentLivesCount: enemyLives,
               ),
             ],
-          ),
-          LivesWidget(
-            overAllLivesCount: maxLives,
-            currentLivesCount: enemyLives,
           ),
         ],
       ),

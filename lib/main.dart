@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_fight_club/fight_club_colors.dart';
 import 'package:flutter_fight_club/fight_club_icons.dart';
+import 'package:flutter_fight_club/fight_club_images.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
@@ -322,7 +323,7 @@ class FightersInfo extends StatelessWidget {
                   SizedBox(
                     height: 92,
                     width: 92,
-                    child: ColoredBox(color: Color(0xFFEF3838)),
+                    child: Image.asset(FightClubImages.youAvatar),
                   ),
                 ],
               ),
@@ -344,7 +345,7 @@ class FightersInfo extends StatelessWidget {
                   SizedBox(
                     height: 92,
                     width: 92,
-                    child: ColoredBox(color: Color(0xFF4388EF)),
+                    child: Image.asset(FightClubImages.enemyAvatar),
                   ),
                 ],
               ),

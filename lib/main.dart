@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_fight_club/fight_club_colors.dart';
 import 'package:flutter_fight_club/fight_club_icons.dart';
 import 'package:flutter_fight_club/fight_club_images.dart';
+import 'package:flutter_fight_club/go_button.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
@@ -200,64 +201,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   //   return 'Error';
   // }
-}
-
-class GoButton extends StatelessWidget {
-  final String text;
-  final VoidCallback onTap;
-  final Color color;
-
-  const GoButton({
-    super.key,
-    required this.onTap,
-    required this.color,
-    required this.text,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 16.0),
-        color: color,
-        height: 40,
-        width: double.infinity,
-        alignment: Alignment.center,
-        child: Text(
-          text.toUpperCase(),
-          style: TextStyle(
-            color: FightClubColors.whiteText,
-            fontSize: 16,
-            fontWeight: FontWeight.w700,
-          ),
-        ),
-      ),
-    );
-
-    // return Padding(
-    //   padding: const EdgeInsets.symmetric(horizontal: 16.0),
-    //   child: GestureDetector(
-    //     onTap: onTap,
-    //     child: SizedBox(
-    //       height: 40,
-    //       child: ColoredBox(
-    //         color: color,
-    //         child: Center(
-    //           child: Text(
-    //             text.toUpperCase(),
-    //             style: TextStyle(
-    //               color: FightClubColors.whiteText,
-    //               fontSize: 16,
-    //               fontWeight: FontWeight.w700,
-    //             ),
-    //           ),
-    //         ),
-    //       ),
-    //     ),
-    //   ),
-    // );
-  }
 }
 
 class ControlsWidget extends StatelessWidget {

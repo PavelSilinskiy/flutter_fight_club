@@ -495,10 +495,15 @@ class BodyPartButton extends StatelessWidget {
       onTap: () => bodyPartSetter(bodyPart),
       child: SizedBox(
         height: 40,
-        child: ColoredBox(
-          color: selected
-              ? FightClubColors.blueButton
-              : FightClubColors.greyButton,
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            color: selected
+                ? FightClubColors.blueButton
+                : FightClubColors.transparentButton,
+            border: !selected
+                ? Border.all(color: FightClubColors.darkGreyText, width: 2)
+                : null,
+          ),
           child: Center(
             child: Text(
               style: TextStyle(

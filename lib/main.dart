@@ -360,17 +360,30 @@ class FightersInfo extends StatelessWidget {
       height: 160,
       child: Stack(
         children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Expanded(
-                child: ColoredBox(color: FightClubColors.yourBackground),
+          SizedBox(height: double.infinity, width: double.infinity,
+            child: DecoratedBox(decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment(-0.33, 0.5),
+                end: Alignment(0.33, 0.5),
+                colors: [
+                  FightClubColors.yourBackground,
+                  FightClubColors.enemyBackground,
+                ],
               ),
-              Expanded(
-                child: ColoredBox(color: FightClubColors.enemyBackground),
-              ),
-            ],
+              
+            )),
           ),
+          // Row(
+          //   crossAxisAlignment: CrossAxisAlignment.stretch,
+          //   children: [
+          //     Expanded(
+          //       child: ColoredBox(color: FightClubColors.yourBackground),
+          //     ),
+          //     Expanded(
+          //       child: ColoredBox(color: FightClubColors.enemyBackground),
+          //     ),
+          //   ],
+          // ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [

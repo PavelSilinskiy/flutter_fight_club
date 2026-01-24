@@ -398,7 +398,19 @@ class FightersInfo extends StatelessWidget {
               SizedBox(
                 height: 44,
                 width: 44,
-                child: ColoredBox(color: Color(0xFF4DC839)),
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    color: FightClubColors.circlVS,
+                    borderRadius: BorderRadius.circular(22),
+                  ),
+                  child: Center(
+                    child: Text(
+                      'vs',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: FightClubColors.circlVSText, fontSize: 16),
+                    ),
+                  ),
+                ),
               ),
               Column(
                 children: [

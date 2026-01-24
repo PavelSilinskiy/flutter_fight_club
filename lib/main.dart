@@ -216,28 +216,47 @@ class GoButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: GestureDetector(
-        onTap: onTap,
-        child: SizedBox(
-          height: 40,
-          child: ColoredBox(
-            color: color,
-            child: Center(
-              child: Text(
-                text.toUpperCase(),
-                style: TextStyle(
-                  color: FightClubColors.whiteText,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-            ),
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 16.0),
+        color: color,
+        height: 40,
+        width: double.infinity,
+        alignment: Alignment.center,
+        child: Text(
+          text.toUpperCase(),
+          style: TextStyle(
+            color: FightClubColors.whiteText,
+            fontSize: 16,
+            fontWeight: FontWeight.w700,
           ),
         ),
       ),
     );
+
+    // return Padding(
+    //   padding: const EdgeInsets.symmetric(horizontal: 16.0),
+    //   child: GestureDetector(
+    //     onTap: onTap,
+    //     child: SizedBox(
+    //       height: 40,
+    //       child: ColoredBox(
+    //         color: color,
+    //         child: Center(
+    //           child: Text(
+    //             text.toUpperCase(),
+    //             style: TextStyle(
+    //               color: FightClubColors.whiteText,
+    //               fontSize: 16,
+    //               fontWeight: FontWeight.w700,
+    //             ),
+    //           ),
+    //         ),
+    //       ),
+    //     ),
+    //   ),
+    // );
   }
 }
 
@@ -360,18 +379,21 @@ class FightersInfo extends StatelessWidget {
       height: 160,
       child: Stack(
         children: [
-          SizedBox(height: double.infinity, width: double.infinity,
-            child: DecoratedBox(decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment(-0.33, 0.5),
-                end: Alignment(0.33, 0.5),
-                colors: [
-                  FightClubColors.yourBackground,
-                  FightClubColors.enemyBackground,
-                ],
+          SizedBox(
+            height: double.infinity,
+            width: double.infinity,
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment(-0.33, 0.5),
+                  end: Alignment(0.33, 0.5),
+                  colors: [
+                    FightClubColors.yourBackground,
+                    FightClubColors.enemyBackground,
+                  ],
+                ),
               ),
-              
-            )),
+            ),
           ),
           // Row(
           //   crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -420,7 +442,10 @@ class FightersInfo extends StatelessWidget {
                     child: Text(
                       'vs',
                       textAlign: TextAlign.center,
-                      style: TextStyle(color: FightClubColors.circlVSText, fontSize: 16),
+                      style: TextStyle(
+                        color: FightClubColors.circlVSText,
+                        fontSize: 16,
+                      ),
                     ),
                   ),
                 ),

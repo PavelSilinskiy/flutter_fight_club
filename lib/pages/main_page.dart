@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_fight_club/pages/fight_page.dart';
 import 'package:flutter_fight_club/resources/fight_club_colors.dart';
 import 'package:flutter_fight_club/widgets/action_button.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
@@ -38,7 +39,31 @@ class _MainPageContent extends StatelessWidget {
                     fontSize: 30,
                   ),
                 ),
-                Expanded(child: SizedBox()),
+                // Expanded(child: SizedBox()),
+                Expanded(
+                  child: FutureBuilder<String?>(
+                    future: SharedPreferences.getInstance().then((
+                      sharedPreferences,
+                    ) {
+                      return sharedPreferences.getString('last_fight_result');
+                    }),
+                    builder: (context, snapshot) {
+                      if (!snapshot.hasData || snapshot.data == null) {
+                        return SizedBox();
+                      } else {
+                        return Center(
+                          child: Text(
+                            'Last result: ${snapshot.data}',
+                            style: TextStyle(
+                              color: FightClubColors.darkGreyText,
+                              fontSize: 16,
+                            ),
+                          ),
+                        );
+                      }
+                    },
+                  ),
+                ),
                 ActionButton(
                   onTap: () {},
                   color: FightClubColors.blackButton,

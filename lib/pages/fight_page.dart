@@ -6,6 +6,7 @@ import 'package:flutter_fight_club/resources/fight_club_colors.dart';
 import 'package:flutter_fight_club/resources/fight_club_icons.dart';
 import 'package:flutter_fight_club/resources/fight_club_images.dart';
 import 'package:flutter_fight_club/widgets/action_button.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class FightPage extends StatefulWidget {
   const FightPage({super.key});
@@ -122,11 +123,20 @@ class _FightPageState extends State<FightPage> {
           yourLives -= 1;
         }
         fightResult = FightResult.calculateResult(yourLives, enemyLives);
-        centralText = _calculateCentralText(youLostLife, enemyLostLife);
-        defendingBodyPart = null;
-        attackingBodyPart = null;
-        whatEnemyDefends = BodyPart.random();
-        whatEnemyAttacks = BodyPart.random();
+        if (fightResult != null) {
+          SharedPreferences.getInstance().then((sharedPreferences) {
+            sharedPreferences.setString(
+              'last_fight_result',
+              fightResult!.result,
+            );
+          });
+        } else {
+          centralText = _calculateCentralText(youLostLife, enemyLostLife);
+          defendingBodyPart = null;
+          attackingBodyPart = null;
+          whatEnemyDefends = BodyPart.random();
+          whatEnemyAttacks = BodyPart.random();
+        }
       });
     }
   }

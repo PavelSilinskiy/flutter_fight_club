@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_fight_club/pages/fight_page.dart';
 import 'package:flutter_fight_club/resources/fight_club_colors.dart';
 import 'package:flutter_fight_club/widgets/action_button.dart';
 
@@ -45,7 +46,12 @@ class _MainPageContent extends StatelessWidget {
                 ),
                 SizedBox(height: 12),
                 ActionButton(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => FightPage()),
+                    );
+                  },
                   color: FightClubColors.blackButton,
                   text: 'Start'.toUpperCase(),
                 ),

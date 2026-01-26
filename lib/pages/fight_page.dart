@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_fight_club/fight_result.dart';
 import 'package:flutter_fight_club/resources/fight_club_colors.dart';
 import 'package:flutter_fight_club/resources/fight_club_icons.dart';
 import 'package:flutter_fight_club/resources/fight_club_images.dart';
@@ -24,6 +25,7 @@ class _FightPageState extends State<FightPage> {
   bool youLostLife = false;
   int yourLives = maxLives;
   int enemyLives = maxLives;
+  FightResult? fightResult;
 
   @override
   Widget build(BuildContext context) {
@@ -107,7 +109,7 @@ class _FightPageState extends State<FightPage> {
   }
 
   void _go() {
-    if (enemyLives == 0 || yourLives == 0) {
+    if (fightResult != null) {
       Navigator.pop(context);
     } else if (defendingBodyPart != null && attackingBodyPart != null) {
       setState(() {
@@ -119,6 +121,7 @@ class _FightPageState extends State<FightPage> {
         if (youLostLife) {
           yourLives -= 1;
         }
+        fightResult = FightResult.calculateResult(yourLives, enemyLives);
         centralText = _calculateCentralText(youLostLife, enemyLostLife);
         defendingBodyPart = null;
         attackingBodyPart = null;

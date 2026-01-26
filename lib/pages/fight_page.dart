@@ -73,7 +73,7 @@ class _FightPageState extends State<FightPage> {
             SizedBox(height: 14),
             ActionButton(
               text: (enemyLives == 0 || yourLives == 0)
-                  ? 'Start new game'
+                  ? 'Back'
                   : 'Go',
               onTap: _go,
               color: _getGoButtonColor(),

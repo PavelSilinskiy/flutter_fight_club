@@ -6,6 +6,7 @@ import 'package:flutter_fight_club/fight_club_icons.dart';
 import 'package:flutter_fight_club/fight_club_images.dart';
 import 'package:flutter_fight_club/go_button.dart';
 import 'package:flutter_fight_club/pages/fight_page.dart';
+import 'package:flutter_fight_club/pages/main_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(textTheme: GoogleFonts.pressStart2pTextTheme(textTheme)),
-      home: const FightPage(title: 'Flutter Demo Home Page'),
+      home: const MainPage(),
     );
   }
 }

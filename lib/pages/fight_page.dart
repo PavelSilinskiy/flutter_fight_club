@@ -72,7 +72,7 @@ class _FightPageState extends State<FightPage> {
               selectAttackingBodyPart: _selectAttackingBodyPart,
             ),
             SizedBox(height: 14),
-            GoButton(
+            ActionButton(
               text: (enemyLives == 0 || yourLives == 0)
                   ? 'Start new game'
                   : 'Go',

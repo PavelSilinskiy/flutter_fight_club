@@ -38,13 +38,13 @@ class _MainPageContent extends StatelessWidget {
                   ),
                 ),
                 Expanded(child: SizedBox()),
-                GoButton(
+                ActionButton(
                   onTap: () {},
                   color: FightClubColors.blackButton,
                   text: 'Start'.toUpperCase(),
                 ),
                 SizedBox(height: 12),
-                GoButton(
+                ActionButton(
                   onTap: () {},
                   color: FightClubColors.blackButton,
                   text: 'Start'.toUpperCase(),

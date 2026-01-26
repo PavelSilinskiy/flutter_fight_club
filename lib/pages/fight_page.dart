@@ -24,7 +24,6 @@ class _FightPageState extends State<FightPage> {
   bool youLostLife = false;
   int yourLives = maxLives;
   int enemyLives = maxLives;
-  // bool isnewGame = true;
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +51,6 @@ class _FightPageState extends State<FightPage> {
                     child: Center(
                       child: Text(
                         centralText,
-                        //_getCentralText(),
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: FightClubColors.darkGreyText,
@@ -115,7 +113,6 @@ class _FightPageState extends State<FightPage> {
       Navigator.pop(context);
     } else if (defendingBodyPart != null && attackingBodyPart != null) {
       setState(() {
-        // isnewGame = false;
         youLostLife = (defendingBodyPart != whatEnemyAttacks);
         enemyLostLife = (attackingBodyPart != whatEnemyDefends);
         if (enemyLostLife) {
@@ -148,34 +145,6 @@ class _FightPageState extends State<FightPage> {
       });
     }
   }
-
-  // String _getCentralText() {
-  //   String text = '';
-  //   if (isnewGame) {
-  //     return '';
-  //   }
-  //   if (enemyLives == 0 && yourLives == 0) {
-  //     return 'Draw';
-  //   }
-  //   if (enemyLives == 0) {
-  //     return 'You won';
-  //   }
-  //   if (yourLives == 0) {
-  //     return 'You lost';
-  //   }
-  //   if (enemyLostLife) {
-  //     text = 'You hit enemy\'s ${attackingBodyPart!.name}.';
-  //   } else {
-  //     text = 'Your attack was blocked.';
-  //   }
-  //   if (youLostLife) {
-  //     text = '$text\nEnemy hit your ${defendingBodyPart!.name}.';
-  //   } else {
-  //     text = '$text\nEnemy\'s attack was blocked.';
-  //   }
-
-  //   return 'Error';
-  // }
 }
 
 class ControlsWidget extends StatelessWidget {
@@ -313,17 +282,6 @@ class FightersInfo extends StatelessWidget {
               ),
             ),
           ),
-          // Row(
-          //   crossAxisAlignment: CrossAxisAlignment.stretch,
-          //   children: [
-          //     Expanded(
-          //       child: ColoredBox(color: FightClubColors.yourBackground),
-          //     ),
-          //     Expanded(
-          //       child: ColoredBox(color: FightClubColors.enemyBackground),
-          //     ),
-          //   ],
-          // ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [

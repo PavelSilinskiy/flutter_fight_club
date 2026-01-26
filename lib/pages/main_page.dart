@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_fight_club/fight_club_colors.dart';
-import 'package:flutter_fight_club/action_button.dart';
+import 'package:flutter_fight_club/resources/fight_club_colors.dart';
+import 'package:flutter_fight_club/widgets/action_button.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});

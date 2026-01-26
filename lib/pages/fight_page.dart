@@ -1,10 +1,10 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_fight_club/fight_club_colors.dart';
-import 'package:flutter_fight_club/fight_club_icons.dart';
-import 'package:flutter_fight_club/fight_club_images.dart';
-import 'package:flutter_fight_club/action_button.dart';
+import 'package:flutter_fight_club/resources/fight_club_colors.dart';
+import 'package:flutter_fight_club/resources/fight_club_icons.dart';
+import 'package:flutter_fight_club/resources/fight_club_images.dart';
+import 'package:flutter_fight_club/widgets/action_button.dart';
 
 class FightPage extends StatefulWidget {
   const FightPage({super.key, required this.title});

@@ -130,13 +130,12 @@ class _FightPageState extends State<FightPage> {
               fightResult!.result,
             );
           });
-        } else {
-          centralText = _calculateCentralText(youLostLife, enemyLostLife);
-          defendingBodyPart = null;
-          attackingBodyPart = null;
-          whatEnemyDefends = BodyPart.random();
-          whatEnemyAttacks = BodyPart.random();
         }
+        centralText = _calculateCentralText(youLostLife, enemyLostLife);
+        defendingBodyPart = null;
+        attackingBodyPart = null;
+        whatEnemyDefends = BodyPart.random();
+        whatEnemyAttacks = BodyPart.random();
       });
     }
   }

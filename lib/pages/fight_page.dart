@@ -70,9 +70,7 @@ class _FightPageState extends State<FightPage> {
             ),
             SizedBox(height: 14),
             ActionButton(
-              text: (enemyLives == 0 || yourLives == 0)
-                  ? 'Back'
-                  : 'Go',
+              text: (enemyLives == 0 || yourLives == 0) ? 'Back' : 'Go',
               onTap: _go,
               color: _getGoButtonColor(),
             ),
@@ -117,33 +115,42 @@ class _FightPageState extends State<FightPage> {
         enemyLostLife = (attackingBodyPart != whatEnemyDefends);
         if (enemyLostLife) {
           enemyLives -= 1;
-          centralText =
-              'You hit enemy\'s ${attackingBodyPart!.name.toLowerCase()}.';
-        } else {
-          centralText = 'Your attack was blocked.';
         }
         if (youLostLife) {
           yourLives -= 1;
-          centralText =
-              '$centralText\nEnemy hit your ${defendingBodyPart!.name.toLowerCase()}.';
-        } else {
-          centralText = '$centralText\nEnemy\'s attack was blocked.';
         }
-
-        if (enemyLives == 0 && yourLives == 0) {
-          centralText = 'Draw';
-        } else if (enemyLives == 0) {
-          centralText = 'You won';
-        } else if (yourLives == 0) {
-          centralText = 'You lost';
-        }
-
+        centralText = _calculateCentralText(youLostLife, enemyLostLife);
         defendingBodyPart = null;
         attackingBodyPart = null;
         whatEnemyDefends = BodyPart.random();
         whatEnemyAttacks = BodyPart.random();
       });
     }
+  }
+
+  String _calculateCentralText(bool youLostLife, bool enemyLostLife) {
+    if (enemyLives == 0 && yourLives == 0) {
+      return 'Draw';
+    } else if (enemyLives == 0) {
+      return 'You won';
+    } else if (yourLives == 0) {
+      return 'You lost';
+    }
+
+    var firstString = '';
+    var secondString = '';
+    if (enemyLostLife) {
+      firstString =
+          'You hit enemy\'s ${attackingBodyPart!.name.toLowerCase()}.';
+    } else {
+      firstString = 'Your attack was blocked.';
+    }
+    if (youLostLife) {
+      secondString = 'Enemy hit your ${defendingBodyPart!.name.toLowerCase()}.';
+    } else {
+      secondString = 'Enemy\'s attack was blocked.';
+    }
+    return '$firstString\n$secondString';
   }
 }
 

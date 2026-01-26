@@ -112,12 +112,7 @@ class _FightPageState extends State<FightPage> {
 
   void _go() {
     if (enemyLives == 0 || yourLives == 0) {
-      setState(() {
-        centralText = '';
-        // isnewGame = true;
-        enemyLives = maxLives;
-        yourLives = maxLives;
-      });
+      Navigator.pop(context);
     } else if (defendingBodyPart != null && attackingBodyPart != null) {
       setState(() {
         // isnewGame = false;

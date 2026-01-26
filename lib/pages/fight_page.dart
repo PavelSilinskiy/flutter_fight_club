@@ -7,8 +7,7 @@ import 'package:flutter_fight_club/resources/fight_club_images.dart';
 import 'package:flutter_fight_club/widgets/action_button.dart';
 
 class FightPage extends StatefulWidget {
-  const FightPage({super.key, required this.title});
-  final String title;
+  const FightPage({super.key});
 
   @override
   State<FightPage> createState() => _FightPageState();

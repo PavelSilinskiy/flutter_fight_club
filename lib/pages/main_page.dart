@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fight_club/fight_club_colors.dart';
-import 'package:flutter_fight_club/go_button.dart';
+import 'package:flutter_fight_club/action_button.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
@@ -38,13 +38,13 @@ class _MainPageContent extends StatelessWidget {
                   ),
                 ),
                 Expanded(child: SizedBox()),
-                GoButton(
+                ActionButton(
                   onTap: () {},
                   color: FightClubColors.blackButton,
                   text: 'Start'.toUpperCase(),
                 ),
                 SizedBox(height: 12),
-                GoButton(
+                ActionButton(
                   onTap: () {},
                   color: FightClubColors.blackButton,
                   text: 'Start'.toUpperCase(),

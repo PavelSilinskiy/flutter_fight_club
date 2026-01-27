@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_fight_club/fight_result.dart';
 import 'package:flutter_fight_club/pages/fight_page.dart';
 import 'package:flutter_fight_club/pages/statistics_page.dart';
 import 'package:flutter_fight_club/resources/fight_club_colors.dart';
 import 'package:flutter_fight_club/widgets/action_button.dart';
+import 'package:flutter_fight_club/widgets/fight_result_widget.dart';
 import 'package:flutter_fight_club/widgets/secondary_action_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -52,24 +54,35 @@ class _MainPageContent extends StatelessWidget {
                       if (!snapshot.hasData || snapshot.data == null) {
                         return SizedBox();
                       } else {
-                        return Center(
-                          child: Text(
-                            'Last result: ${snapshot.data}',
-                            style: TextStyle(
-                              color: FightClubColors.darkGreyText,
-                              fontSize: 16,
+                        return Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 12.0),
+                              child: Text(
+                                'Last fight result',
+                                style: TextStyle(
+                                  color: FightClubColors.darkGreyText,
+                                  fontSize: 14,
+                                ),
+                              ),
                             ),
-                          ),
+                            FightResultWidget(
+                              fightResult: FightResult.won,
+                            ), //TODO: parse from snapshot.data
+                          ],
                         );
                       }
                     },
                   ),
                 ),
                 SecondaryActionButton(
-                  onTap: () {Navigator.push(
+                  onTap: () {
+                    Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => StatisticsPage()),
-                    );},
+                    );
+                  },
                   text: 'Statistics'.toUpperCase(),
                 ),
                 SizedBox(height: 12),

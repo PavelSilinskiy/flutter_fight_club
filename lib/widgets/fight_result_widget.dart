@@ -7,14 +7,11 @@ import '../resources/fight_club_images.dart';
 class FightResultWidget extends StatelessWidget {
   final FightResult fightResult;
 
-  const FightResultWidget({
-    super.key,
-    required this.fightResult,
-  });
+  const FightResultWidget({super.key, required this.fightResult});
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 160,
+      height: 140,
       child: Stack(
         children: [
           SizedBox(
@@ -34,66 +31,89 @@ class FightResultWidget extends StatelessWidget {
             ),
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Column(
-                children: [
-                  const SizedBox(height: 16),
-                  Center(
-                    child: Text(
-                      'You',
-                      style: TextStyle(color: FightClubColors.darkGreyText),
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-                  SizedBox(
-                    height: 92,
-                    width: 92,
-                    child: Image.asset(FightClubImages.youAvatar),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 44,
-                width: 44,
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    color: FightClubColors.circlVS,
-                    borderRadius: BorderRadius.circular(22),
-                  ),
-                  child: Center(
-                    child: Text(
-                      'vs',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: FightClubColors.circlVSText,
-                        fontSize: 16,
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 12.0,
+                  bottom: 12.0,
+                  left: 30,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Center(
+                      child: Text(
+                        'You',
+                        style: TextStyle(color: FightClubColors.darkGreyText),
                       ),
+                    ),
+                    SizedBox(
+                      height: 92,
+                      width: 92,
+                      child: Image.asset(FightClubImages.youAvatar),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                height: 44,
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                decoration: ShapeDecoration(
+                  shape: StadiumBorder(),
+                  color: _getStadiumColor(fightResult),
+                ),
+                child: Center(
+                  child: Text(
+                    fightResult.toString().toLowerCase(),
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: FightClubColors.circlVSText,
+                      fontSize: 16,
                     ),
                   ),
                 ),
               ),
-              Column(
-                children: [
-                  const SizedBox(height: 16),
-                  Center(
-                    child: Text(
-                      'Enemy',
-                      style: TextStyle(color: FightClubColors.darkGreyText),
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 12.0,
+                  bottom: 12.0,
+                  right: 30,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Center(
+                      child: Text(
+                        'Enemy',
+                        style: TextStyle(color: FightClubColors.darkGreyText),
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 12),
-                  SizedBox(
-                    height: 92,
-                    width: 92,
-                    child: Image.asset(FightClubImages.enemyAvatar),
-                  ),
-                ],
+                    SizedBox(
+                      height: 92,
+                      width: 92,
+                      child: Image.asset(FightClubImages.enemyAvatar),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
         ],
       ),
     );
+  }
+
+  Color _getStadiumColor(FightResult fightResult) {
+    switch (fightResult) {
+      case FightResult.won:
+        return FightClubColors.wonStadium;
+      case FightResult.lost:
+        return FightClubColors.lostStadium;
+      case FightResult.draw:
+        return FightClubColors.drawStadium;
+      default:
+        throw ArgumentError('Unknown FightResult: $fightResult');
+    }
   }
 }

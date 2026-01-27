@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 class FightResult {
   final String result;
   const FightResult._({required this.result});
@@ -24,7 +22,16 @@ class FightResult {
   }
 
   static FightResult fromString(String resultString) {
-    return FightResult._(result: resultString);
+    switch (resultString) {
+      case 'Draw':
+        return draw;
+      case 'Won':
+        return won;
+      case 'Lost':
+        return lost;
+      default:
+        throw ArgumentError('Unknown FightResult: $resultString');
+    }
   }
 
   @override

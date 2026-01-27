@@ -124,10 +124,19 @@ class _FightPageState extends State<FightPage> {
         }
         fightResult = FightResult.calculateResult(yourLives, enemyLives);
         if (fightResult != null) {
+          var key = 'stats_${fightResult!.result.toLowerCase()}';
+          int? value;
           SharedPreferences.getInstance().then((sharedPreferences) {
             sharedPreferences.setString(
               'last_fight_result',
               fightResult!.result,
+            );
+            value = sharedPreferences.getInt(key);
+            sharedPreferences.setInt(
+              key,
+              (value == null || value! == 0)
+                  ? 1
+                  : value! + 1,
             );
           });
         }

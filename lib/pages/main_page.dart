@@ -68,8 +68,10 @@ class _MainPageContent extends StatelessWidget {
                               ),
                             ),
                             FightResultWidget(
-                              fightResult: FightResult.won,
-                            ), //TODO: parse from snapshot.data
+                              fightResult: FightResult.fromString(
+                                snapshot.data!,
+                              ),
+                            ),
                           ],
                         );
                       }

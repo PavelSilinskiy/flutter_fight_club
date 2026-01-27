@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class FightResult {
   final String result;
   const FightResult._({required this.result});
@@ -6,7 +8,10 @@ class FightResult {
   static const FightResult won = FightResult._(result: 'Won');
   static const FightResult lost = FightResult._(result: 'Lost');
 
-  static FightResult? calculateResult(final int yourLives, final int enemyLives) {
+  static FightResult? calculateResult(
+    final int yourLives,
+    final int enemyLives,
+  ) {
     if (enemyLives == 0 && yourLives == 0) {
       return draw;
     } else if (enemyLives == 0) {
@@ -18,8 +23,12 @@ class FightResult {
     }
   }
 
+  static FightResult fromString(String resultString) {
+    return FightResult._(result: resultString);
+  }
+
   @override
   String toString() {
-    return 'FightResult{result: $result}';
+    return result;
   }
 }

@@ -20,20 +20,25 @@ class _StatisticsPageContent extends StatelessWidget {
         child: Center(
           child: Column(
             children: [
-              SizedBox(height: 24),
-              Text(
-                'Statistics',
-                style: TextStyle(
-                  fontSize: 24,
-                  color: FightClubColors.darkGreyText,
+              Container(
+                margin: const EdgeInsets.only(top: 24.0),
+                child: Text(
+                  'Statistics',
+                  style: TextStyle(
+                    fontSize: 24,
+                    color: FightClubColors.darkGreyText,
+                  ),
                 ),
               ),
               Expanded(child: SizedBox()),
-              SecondaryActionButton(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                text: "Back",
+              Padding(
+                padding: const EdgeInsets.only(bottom: 16.0),
+                child: SecondaryActionButton(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  text: "Back",
+                ),
               ),
             ],
           ),

@@ -16,21 +16,19 @@ class SecondaryActionButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 16.0),
         height: 40,
         width: double.infinity,
         alignment: Alignment.center,
         decoration: BoxDecoration(
           color: FightClubColors.transparentButton,
-          border: Border.all(
-            width: 2,
-            color: FightClubColors.darkGreyText,
-          ),
+          border: Border.all(width: 2, color: FightClubColors.darkGreyText),
         ),
         child: Text(
           text.toUpperCase(),
           style: TextStyle(
             color: FightClubColors.darkGreyText,
-            fontSize: 16,
+            fontSize: 13,
             fontWeight: FontWeight.w700,
           ),
         ),
